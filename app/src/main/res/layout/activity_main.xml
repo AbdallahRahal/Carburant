@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <Button
+        android:id="@+id/buttonGetCity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Valider"
+        app:layout_constraintBottom_toBottomOf="parent"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <RadioGroup
+        android:id="@+id/radioGroupCity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        app:layout_constraintBottom_toTopOf="@+id/buttonGetCity"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <RadioButton
+            android:id="@+id/Gazole"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Gazole"
+            app:layout_constraintBottom_toTopOf="@+id/E85"
+            app:layout_constraintStart_toStartOf="@+id/E85" />
+
+        <RadioButton
+            android:id="@+id/SP98"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="SP98"
+            app:layout_constraintBottom_toTopOf="@+id/E10"
+            app:layout_constraintStart_toStartOf="@+id/E10" />
+
+        <RadioButton
+            android:id="@+id/SP95"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="SP95"
+            app:layout_constraintBottom_toTopOf="@+id/GPLc"
+            app:layout_constraintStart_toStartOf="@+id/GPLc" />
+
+        <RadioButton
+            android:id="@+id/GPLc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="GPLc"
+            app:layout_constraintBottom_toTopOf="@+id/buttonGetCity"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <RadioButton
+            android:id="@+id/E85"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="E85"
+            app:layout_constraintBottom_toTopOf="@+id/SP98"
+            app:layout_constraintStart_toStartOf="@+id/SP98" />
+
+        <RadioButton
+            android:id="@+id/E10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="E10"
+            app:layout_constraintBottom_toTopOf="@+id/SP95"
+            app:layout_constraintStart_toStartOf="@+id/SP95" />
+
+    </RadioGroup>
+
+    <EditText
+        android:id="@+id/Ville"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="text"
+        android:text="Ville"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <RadioButton
+        android:id="@+id/useLocation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Localisation"
+        app:layout_constraintBottom_toBottomOf="@+id/Ville"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/Ville"
+        app:layout_constraintTop_toTopOf="@+id/Ville" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
