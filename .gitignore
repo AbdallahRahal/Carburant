@@ -76,3 +76,4 @@ _ReSharper*/
 #Nuget packages folder
 packages/
 /.gradle
+/.idea/workspace.xml
