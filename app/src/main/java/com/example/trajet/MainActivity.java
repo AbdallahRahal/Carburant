@@ -21,6 +21,7 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Switch;
 import android.widget.Toast;
 
 import org.jetbrains.annotations.NotNull;
@@ -55,11 +56,12 @@ public class MainActivity extends AppCompatActivity {
         }
     };
 
-
+    EditText cityText;
     Button buttonGetCity;
     Button buttonGetTrajet;
     EditText origin_addresses;
     EditText destination_addresses;
+    Switch useLocation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,28 +90,46 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                    requestPermissions(new String[]{Manifest.permission.ACCESS_COARSE_LOCATION}, 11);
-                } else {
-                    LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+                useLocation = (Switch) findViewById(R.id.useLocation);
+                RadioGroup radiogroup = findViewById(R.id.radioGroupCity);
+                RadioButton radiobutton = findViewById(radiogroup.getCheckedRadioButtonId());
 
-                    locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER,0,0,locationListener);
-                    Log.i("reponse", "request location update 1");
-                    Location location = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+                if(useLocation.isChecked()){
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                        requestPermissions(new String[]{Manifest.permission.ACCESS_COARSE_LOCATION}, 11);
+                    } else {
+                        LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 
-                    try {
-                        String city = Location(location.getLatitude(), location.getLongitude());
-                        Log.i("reponse", "Location: " + city);
-                        RadioGroup radiogroup = findViewById(R.id.radioGroupCity);
-                        RadioButton radiobutton = findViewById(radiogroup.getCheckedRadioButtonId());
-                        api(v,city,radiobutton.getText().toString());
-                    } catch (Exception e) {
-                        Toast.makeText(MainActivity.this, "not found 1", Toast.LENGTH_SHORT).show();
+                        locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER,0,0,locationListener);
+                        Log.i("reponse", "request location update 1");
+                        Location location = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
 
+                        try {
+                            String city = Location(location.getLatitude(), location.getLongitude());
+                            Log.i("reponse", "Location: " + city);
+
+
+                            api(v,city,radiobutton.getText().toString());
+                        } catch (Exception e) {
+                            Toast.makeText(MainActivity.this, "veuillez réessayer", Toast.LENGTH_SHORT).show();
+                            e.printStackTrace();
+                        }
+
+                    }
+                }else{
+                    cityText = (EditText) findViewById(R.id.cityText);
+                    if(cityText.getText().toString().isEmpty()){
+                        Toast.makeText(MainActivity.this,"Inserer une ville ou activer localisation",Toast.LENGTH_SHORT).show();
+                    }else{
+                        try {
+                            api(v,cityText.getText().toString(),radiobutton.getText().toString());
+                        } catch (InterruptedException e) {
+                            Toast.makeText(MainActivity.this, "veuillez réessayer", Toast.LENGTH_SHORT).show();
+                            e.printStackTrace();
+                        }
                     }
 
                 }
-
             }
 
 
