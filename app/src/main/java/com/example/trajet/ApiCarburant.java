@@ -31,7 +31,7 @@ public class ApiCarburant {
         OkHttpClient client = new OkHttpClient();
         //requete pour l'api externe (s'informer sur la doc de l'api)
         Request request = new Request.Builder()
-                .url("https://public.opendatasoft.com/api/records/1.0/search/?dataset=prix_des_carburants_j_7&q=city:%22" + ville + "+AND+fuel%3A+" + carburant + "&sort=update ")
+                .url("https://public.opendatasoft.com/api/records/1.0/search/?dataset=prix_des_carburants_j_7&q=city:%22" + ville + "+AND+NOT+%23null(price_" + carburant + ")&sort=update ")
                 .build();
 
 
