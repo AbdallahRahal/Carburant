@@ -1,12 +1,14 @@
 # Built application files
 /*/build/
 *.bin
-.local.properties
+
 # Crashlytics configuations
 com_crashlytics_export_strings.xml
 
 # Local configuration file (sdk path, etc)
 local.properties
+
+/local.properties
 
 # Gradle generated files
 .gradle/
@@ -26,6 +28,8 @@ local.properties
 .idea/modules.xml
 .idea/scopes/scope_settings.xml
 .idea/vcs.xml
+#.idea/workspace.xml
+.idea/workspace.xml
 *.iml
 
 # OS-specific files
@@ -37,5 +41,6 @@ local.properties
 ehthumbs.db
 Thumbs.db
 /local.properties
-/local.properties
+./local.properties
 /.local.properties
+/.idea/workspace.xml
