@@ -76,24 +76,26 @@
     </RadioGroup>
 
     <EditText
-        android:id="@+id/Ville"
+        android:id="@+id/cityText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="text"
-        android:text="Ville"
+        android:hint="Ville"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <RadioButton
+    <Switch
         android:id="@+id/useLocation"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Localisation"
-        app:layout_constraintBottom_toBottomOf="@+id/Ville"
+        android:text="Localisation automatique"
+        app:layout_constraintBottom_toBottomOf="@+id/cityText"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/Ville"
-        app:layout_constraintTop_toTopOf="@+id/Ville" />
+        app:layout_constraintStart_toEndOf="@+id/cityText"
+        app:layout_constraintTop_toTopOf="@+id/cityText" />
+
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
