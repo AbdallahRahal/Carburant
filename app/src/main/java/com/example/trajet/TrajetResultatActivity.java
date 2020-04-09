@@ -31,7 +31,7 @@ public class TrajetResultatActivity extends AppCompatActivity {
             String duration = elements.getJSONObject("duration").getString("text");
             TextView txt = (TextView) findViewById(R.id.textView);
             String status = elements.getString("status");
-            txt.setText("distance="+distance+"duration="+duration+"status"+status);
+            txt.setText("Distance du trajet : "+ distance +"\n\nDurée du trajet : "+duration+"");
             /*txt.setText(duree);*/
         } catch (JSONException e) {
             Log.e("reponse", "echec de la creation json dans station activity");
