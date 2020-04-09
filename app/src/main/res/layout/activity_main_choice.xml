@@ -10,23 +10,25 @@
         android:id="@+id/buttonTrajetActivity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="116dp"
         android:text="Information trajet"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.332" />
+        app:layout_constraintVertical_bias="0.273" />
 
     <Button
         android:id="@+id/buttonChercheStation"
         android:layout_width="198dp"
         android:layout_height="54dp"
-        android:layout_marginTop="128dp"
-        android:layout_marginEnd="104dp"
         android:text="Chercher une station"
-        app:layout_constraintBottom_toTopOf="@+id/textView4"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonTrajetActivity" />
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.574" />
 
     <TextView
         android:id="@+id/textView2"
@@ -49,22 +51,23 @@
         android:id="@+id/textView3"
         android:layout_width="254dp"
         android:layout_height="45dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginBottom="380dp"
         android:text="INFORMATION TRAJET permet d'avoir la durée et la distance d'un trajet donné"
-        app:layout_constraintBottom_toTopOf="@+id/buttonChercheStation"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/buttonTrajetActivity"
-        app:layout_constraintVertical_bias="0.049" />
+        app:layout_constraintVertical_bias="0.38" />
 
     <TextView
         android:id="@+id/textView4"
         android:layout_width="265dp"
         android:layout_height="73dp"
-        android:layout_marginBottom="124dp"
         android:text="CHERCHER UNE STATION permet de localiser des stations essences proches de votre localisation ou d'une ville donnée"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonChercheStation"
+        app:layout_constraintVertical_bias="0.083" />
 </androidx.constraintlayout.widget.ConstraintLayout>
