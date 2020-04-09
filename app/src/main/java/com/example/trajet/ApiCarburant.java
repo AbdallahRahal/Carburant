@@ -22,10 +22,10 @@ import static androidx.core.content.ContextCompat.startActivity;
 
 public class ApiCarburant {
 
-    JSONObject jsonObject = new JSONObject();
+    String reponsehttp = null;
 
 
-    public JSONObject StationVille(String ville, String carburant) throws InterruptedException {
+    public String StationVille(String ville, String carburant) throws InterruptedException {
 
 
         OkHttpClient client = new OkHttpClient();
@@ -48,19 +48,8 @@ public class ApiCarburant {
             @Override
             public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
 
-                try {
-                    //si bonne réponse de l'api alors tentative de transformation en objet Json || response.body().string(); = la reponse en string
-                    String reponsehttp = response.body().string();
-                    jsonObject = new JSONObject(reponsehttp);
-                    Log.i("reponse", "Reponse ok : "+jsonObject);
+                reponsehttp = response.body().string();
 
-
-
-                } catch (JSONException e) {
-                    //si la transformation en json foire
-                    Log.e("reponse", "echec de la creation JSON");
-
-                }
                 countDownLatch.countDown();
             }
 
@@ -69,7 +58,7 @@ public class ApiCarburant {
         //le thread attend qu'un des autre countDownLatch.countDown(); (ligne 64 ou 44  est été apellé pour continuer ce qui permet d'attendre une réponse de l'api pour renvoyer un resultat
         countDownLatch.await();
         //reourn l'objet jsona  traiter plus tard
-        return jsonObject;
+        return reponsehttp;
 
     }
 

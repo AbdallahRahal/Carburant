@@ -20,7 +20,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.TextView;
 import android.widget.Switch;
 import android.widget.Toast;
 
@@ -33,35 +32,10 @@ import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
 
-    private LocationManager locationManager;
-    private LocationListener locationListener = new LocationListener() {
-        @Override
-        public void onLocationChanged(Location location) {
-
-        }
-
-        @Override
-        public void onStatusChanged(String provider, int status, Bundle extras) {
-
-        }
-
-        @Override
-        public void onProviderEnabled(String provider) {
-
-        }
-
-        @Override
-        public void onProviderDisabled(String provider) {
-
-        }
-    };
-
-    EditText cityText;
-    Button buttonGetCity;
     Button buttonGetTrajet;
     EditText origin_addresses;
     EditText destination_addresses;
-    Switch useLocation;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,108 +59,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        buttonGetCity = (Button) findViewById(R.id.buttonGetCity);
-        buttonGetCity.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                useLocation = (Switch) findViewById(R.id.useLocation);
-                RadioGroup radiogroup = findViewById(R.id.radioGroupCity);
-                RadioButton radiobutton = findViewById(radiogroup.getCheckedRadioButtonId());
-
-                if(useLocation.isChecked()){
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                        requestPermissions(new String[]{Manifest.permission.ACCESS_COARSE_LOCATION}, 11);
-                    } else {
-                        LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-
-                        locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER,0,0,locationListener);
-                        Log.i("reponse", "request location update 1");
-                        Location location = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
-
-                        try {
-                            String city = Location(location.getLatitude(), location.getLongitude());
-                            Log.i("reponse", "Location: " + city);
-
-
-                            api(v,city,radiobutton.getText().toString());
-                        } catch (Exception e) {
-                            Toast.makeText(MainActivity.this, "veuillez réessayer", Toast.LENGTH_SHORT).show();
-                            e.printStackTrace();
-                        }
-
-                    }
-                }else{
-                    cityText = (EditText) findViewById(R.id.cityText);
-                    if(cityText.getText().toString().isEmpty()){
-                        Toast.makeText(MainActivity.this,"Inserer une ville ou activer localisation",Toast.LENGTH_SHORT).show();
-                    }else{
-                        try {
-                            api(v,cityText.getText().toString(),radiobutton.getText().toString());
-                        } catch (InterruptedException e) {
-                            Toast.makeText(MainActivity.this, "veuillez réessayer", Toast.LENGTH_SHORT).show();
-                            e.printStackTrace();
-                        }
-                    }
-
-                }
-            }
-
-
-        });
-
-    }
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NotNull String[] permission, @NotNull int[] grantResult) {
-        super.onRequestPermissionsResult(requestCode, permission, grantResult);
-        switch (requestCode) {
-            case 11: {
-                if (grantResult[0] == PackageManager.PERMISSION_GRANTED) {
-                    LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-
-                    if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                        requestPermissions(new String[]{Manifest.permission.ACCESS_COARSE_LOCATION}, 11);
-                        return;
-                    }
-                    locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER,0,0,locationListener);
-                    Log.i("reponse", "request location update 2");
-                    Location location = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
-
-                }else{
-                    Toast.makeText(this, "Permission not granted", Toast.LENGTH_SHORT).show();
-                }
-            }
-        }
-    }
-
-    private String Location(double lat,double lon){
-        String city = "";
-        Geocoder geocoder = new Geocoder(this, Locale.getDefault());
-        List<Address> addresses;
-        try {
-            addresses = geocoder.getFromLocation(lat,lon,10);
-            if(addresses.size()>0){
-                for(Address adr: addresses){
-                    if(adr.getLocality()!= null && adr.getLocality().length()>0){
-                        city = adr.getLocality();
-                        break;
-                    }
-                }
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return city;
-    }
-
-    public void api(View v,String city,String carburant) throws InterruptedException {
-        ApiCarburant apiCarburant = new ApiCarburant();
-
-
-        /*Intent StationActivity = new Intent(MainActivity.this, StationActivity.class);
-        startActivity(StationActivity);*/
-        Log.i( "reponse", " final"+ apiCarburant.StationVille(city,carburant )   );
 
 
     }
@@ -194,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
     public void apitrajet(String origin_addresses, String destination_addresses) throws InterruptedException {
         ApiTrajet apiTrajet = new ApiTrajet();
         String apitrajetreponse = apiTrajet.Trajet(origin_addresses,destination_addresses);
-        Intent StationActivity = new Intent(MainActivity.this, StationActivity.class);
+        Intent StationActivity = new Intent(MainActivity.this, TrajetResultatActivity.class);
         Bundle b = new Bundle();
         b.putString("reponse", apitrajetreponse); //Your id
         StationActivity.putExtras(b); //Put your id to your next Intent
