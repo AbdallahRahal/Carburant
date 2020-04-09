@@ -8,6 +8,8 @@ com_crashlytics_export_strings.xml
 # Local configuration file (sdk path, etc)
 local.properties
 
+/local.properties
+
 # Gradle generated files
 .gradle/
 
@@ -26,6 +28,8 @@ local.properties
 .idea/modules.xml
 .idea/scopes/scope_settings.xml
 .idea/vcs.xml
+#.idea/workspace.xml
+.idea/workspace.xml
 *.iml
 
 # OS-specific files
@@ -36,3 +40,40 @@ local.properties
 .Trashes
 ehthumbs.db
 Thumbs.db
+/local.properties
+./local.properties
+/.local.properties
+.idea/workspace.xml
+
+#Ignore thumbnails created by Windows
+#Ignore files built by Visual Studio
+*.obj
+*.exe
+*.pdb
+*.user
+*.aps
+*.pch
+*.vspscc
+*_i.c
+*_p.c
+*.ncb
+*.suo
+*.tlb
+*.tlh
+*.bak
+*.cache
+*.ilk
+*.log
+[Bb]in
+[Dd]ebug*/
+*.lib
+*.sbr
+obj/
+[Rr]elease*/
+_ReSharper*/
+[Tt]est[Rr]esult*
+.vs/
+#Nuget packages folder
+packages/
+/.gradle
+/.idea/workspace.xml
