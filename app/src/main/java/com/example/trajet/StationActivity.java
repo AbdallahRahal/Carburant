@@ -166,6 +166,9 @@ public class StationActivity extends AppCompatActivity {
         Intent StationResultActivity = new Intent(StationActivity.this, StationResultatActivity.class);
         Bundle b = new Bundle();
         b.putString("reponse", apiCarburantreponse);
+        b.putString("carbu", carburant);
+
+        b.putString("ville", city);
         StationResultActivity.putExtras(b); //Put your id to your next Intent
         startActivity(StationResultActivity);
 
